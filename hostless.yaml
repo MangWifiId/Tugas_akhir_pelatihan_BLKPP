@@ -1,9 +1,11 @@
 build:
   system: docker
-  dockerfile_path: "./Dockerfile"
-  working_directory: "/"
+
+dockerfile_path: "./Dockerfile"
+working_directory: "/"
+build_context_directory: "/"
 
 health_check:
-  path: "/health"
-  interval_seconds: 15
-  timeout_seconds: 5
+  type: "http"
+  http_path: "/health"
+  interval_in_seconds: 15
