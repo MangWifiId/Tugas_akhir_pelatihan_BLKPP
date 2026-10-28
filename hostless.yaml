@@ -1,0 +1,9 @@
+build:
+  system: docker
+  dockerfile_path: "./Dockerfile"
+  working_directory: "/"
+
+health_check:
+  path: "/health"
+  interval_seconds: 15
+  timeout_seconds: 5

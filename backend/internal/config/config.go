@@ -16,14 +16,18 @@ type Config struct {
 func Load() (*Config, error) {
 	_ = godotenv.Load()
 
-	cfg := &Config{
-		AppPort:     os.Getenv("APP_PORT"),
-		DatabaseURL: os.Getenv("DATABASE_URL"),
-		JWTSecret:   os.Getenv("JWT_SECRET"),
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = os.Getenv("APP_PORT")
+	}
+	if port == "" {
+		port = "8080"
 	}
 
-	if cfg.AppPort == "" {
-		cfg.AppPort = "8080"
+	cfg := &Config{
+		AppPort:     port,
+		DatabaseURL: os.Getenv("DATABASE_URL"),
+		JWTSecret:   os.Getenv("JWT_SECRET"),
 	}
 
 	if cfg.DatabaseURL == "" {
