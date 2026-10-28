@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"path/filepath"
 	"strings"
 	"syscall"
 	"time"
@@ -196,7 +197,33 @@ func main() {
 
 	purchases.RegisterRoutes(purchaseRoutes, purchasesHandler)
 
-	// 14. Menjalankan server dengan timeout dan graceful shutdown.
+	// 14. Menyajikan frontend statis (mode deployment satu container).
+	// Jika variabel STATIC_DIR diatur, semua permintaan yang bukan API
+	// dilayani dari folder tersebut, dengan fallback ke index.html agar
+	// routing SPA (react-router) tetap berjalan.
+	if staticDir := strings.TrimSpace(os.Getenv("STATIC_DIR")); staticDir != "" {
+		router.NoRoute(func(c *gin.Context) {
+			if strings.HasPrefix(c.Request.URL.Path, "/api/") {
+				c.JSON(http.StatusNotFound, gin.H{
+					"error": "endpoint tidak ditemukan",
+				})
+				return
+			}
+
+			filePath := filepath.Join(
+				staticDir,
+				strings.TrimPrefix(c.Request.URL.Path, "/"),
+			)
+			if info, err := os.Stat(filePath); err == nil && !info.IsDir() {
+				c.File(filePath)
+				return
+			}
+
+			c.File(filepath.Join(staticDir, "index.html"))
+		})
+	}
+
+	// 15. Menjalankan server dengan timeout dan graceful shutdown.
 	server := &http.Server{
 		Addr:              ":" + cfg.AppPort,
 		Handler:           router,

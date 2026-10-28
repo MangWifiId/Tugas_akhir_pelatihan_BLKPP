@@ -1,0 +1,8 @@
+.git
+node_modules
+**/node_modules
+frontend/dist
+backend/server
+*.exe
+*.env
+!backend/.env.example
