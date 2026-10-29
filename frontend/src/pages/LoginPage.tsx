@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import LogoMark from '../components/LogoMark';
 import '../styles/login.css';
 
 export default function LoginPage() {
@@ -42,15 +43,15 @@ export default function LoginPage() {
     <main className="login-shell">
       <section className="login-promo">
         <a className="brand" href="/login">
-          <span className="brand-icon">⚙</span>
+          <span className="brand-icon"><LogoMark /></span>
           <span>
-            <strong>Workshop<span>Pro</span></strong>
+            <strong>Bengkel<span>ku</span></strong>
             <small>Sistem Manajemen Bengkel</small>
           </span>
         </a>
 
         <div className="promo-content">
-          <span className="eyebrow">WORKSHOP MANAGEMENT SYSTEM</span>
+          <span className="eyebrow">BENGKEL MANAGEMENT SYSTEM</span>
           <h1>
             Kelola Bengkel Anda dengan <span>Lebih Mudah.</span>
           </h1>
@@ -114,12 +115,12 @@ export default function LoginPage() {
       <section className="login-panel">
         <div className="login-card">
           <div className="mobile-brand">
-            <span className="brand-icon">⚙</span>
-            <strong>Workshop<span>Pro</span></strong>
+            <span className="brand-icon"><LogoMark /></span>
+            <strong>Bengkel<span>ku</span></strong>
           </div>
 
           <div className="login-heading">
-            <div className="login-symbol">⚙</div>
+            <div className="login-symbol"><LogoMark /></div>
             <h2>Selamat Datang</h2>
             <p>Masuk ke akun Anda untuk melanjutkan</p>
           </div>
@@ -199,7 +200,7 @@ export default function LoginPage() {
         </div>
 
         <div className="panel-copyright">
-          © 2026 WorkshopPro · Sistem Manajemen Bengkel
+          © 2026 Bengkelku · Sistem Manajemen Bengkel
         </div>
       </section>
     </main>

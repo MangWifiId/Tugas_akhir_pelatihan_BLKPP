@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 
 import { useAuth } from '../context/AuthContext'
+import LogoMark from '../components/LogoMark'
 import type { Role } from '../types'
 import { initials, roleLabels } from '../utils/format'
 
@@ -72,10 +73,10 @@ function DashboardLayout() {
 
       <aside className={sidebarOpen ? 'sidebar sidebar-open' : 'sidebar'}>
         <div className="sidebar-brand">
-          <div className="brand-icon">⚙</div>
+          <div className="brand-icon"><LogoMark /></div>
           <div>
-            <strong>WorkshopPro</strong>
-            <span>Management System</span>
+            <strong>Bengkelku</strong>
+            <span>Sistem Manajemen Bengkel</span>
           </div>
         </div>
 
@@ -100,7 +101,7 @@ function DashboardLayout() {
         <div className="sidebar-footer">
           <span className="status-dot" />
           <span>Terhubung ke server</span>
-          <small>WorkshopPro v1.0</small>
+          <small>Bengkelku v1.0</small>
         </div>
       </aside>
 
@@ -116,7 +117,7 @@ function DashboardLayout() {
               ☰
             </button>
             <div>
-              <strong>Workshop Management</strong>
+              <strong>Manajemen Bengkel</strong>
               <p>Inventaris dan operasional bengkel motor</p>
             </div>
           </div>
